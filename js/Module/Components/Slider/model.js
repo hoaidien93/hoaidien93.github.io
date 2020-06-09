@@ -1,3 +1,4 @@
+this.isShow = false;
 this.backHome = () => {
 
 }
@@ -27,6 +28,13 @@ this.afterBinding = () => {
         if(e.detail.direction === "left"){
             this.hide();
         }
+    });
+    document.addEventListener('tap', (e) => {
+        let pageX = e.detail.pageX;
+        if (this.isShow && pageX > this.offsetWidth) {
+            this.hide();
+        }
+
     });
 }
 

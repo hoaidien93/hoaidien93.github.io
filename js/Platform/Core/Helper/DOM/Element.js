@@ -68,9 +68,7 @@ define(() => {
             if (currentTap.pageX === e.changedTouches[0].pageX && currentTap.pageY === e.changedTouches[0].pageY) {
                 var event = new CustomEvent('tap', {
                     bubbles: true,
-                    detail: {
-                        path: currentTap.path
-                    }
+                    detail: currentTap
                 });
                 currentTap.target.dispatchEvent(event);
             }
