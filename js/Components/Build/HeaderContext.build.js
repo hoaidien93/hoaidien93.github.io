@@ -1,0 +1,1 @@
+define(["Module/Components/HeaderContext/build"],function(Module){window.customElements.define("com-headercontext",class HeaderContext extends AbstractComponent{constructor(){super(),this.template=Module.template,Module.viewModel.call(this)}})});

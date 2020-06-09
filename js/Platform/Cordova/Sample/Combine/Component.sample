@@ -1,0 +1,13 @@
+define([
+    "Module/Components/{{name}}/build",
+],function(Module){
+    class {{name}} extends AbstractComponent {
+        constructor() {
+            super();
+            this.template = Module.template;
+            let ViewModel = Module.viewModel;
+            ViewModel.call(this);
+        }
+    };
+    window.customElements.define("{{tagName}}", {{name}});
+});

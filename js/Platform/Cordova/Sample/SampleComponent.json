@@ -1,0 +1,6 @@
+{
+    "name": "{{NameOfComponent}}",
+    "tagName": "{{custom-tag-name}}",
+    "isWidget": false,
+    "dependencies": []
+}

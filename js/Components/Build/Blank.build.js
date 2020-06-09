@@ -1,0 +1,1 @@
+define(["Module/Components/Blank/build"],function(Module){window.customElements.define("com-blank",class Blank extends AbstractComponent{constructor(){super(),this.template=Module.template,Module.viewModel.call(this)}})});

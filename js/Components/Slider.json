@@ -1,0 +1,6 @@
+{
+    "name": "Slider",
+    "tagName": "com-slider",
+    "isWidget": false,
+    "dependencies": []
+}

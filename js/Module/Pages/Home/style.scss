@@ -1,0 +1,50 @@
+#home-page{
+    .middle-header {
+        border: none;
+        border-radius: 10px;
+        width: calc(100vw - 2rem);
+        height: auto;
+        box-shadow: 0 0.1px 0.3px rgba(0,0,0,0.008), 0 0.2px 0.8px rgba(0,0,0,0.013), 0 0.3px 1.4px rgba(0,0,0,0.017), 0 0.5px 2.4px rgba(0,0,0,0.02), 0 0.8px 3.6px rgba(0,0,0,0.023), 0 1.1px 5.2px rgba(0,0,0,0.026), 0 1.6px 7.2px rgba(0,0,0,0.029), 0 2.3px 9.7px rgba(0,0,0,0.032), 0 3.1px 12.7px rgba(0,0,0,0.035), 0 4px 15px rgba(0,0,0,0.04);
+        background-color: var(--main-color-background);
+        margin-left: calc((100vw - calc(100vw - 2rem)) / 2);
+        z-index: 12;
+        top: 65px;
+        .card {
+          .card-body {
+            display: flex;
+            justify-content: space-between;
+            .card-left {
+              display: block;
+              .card-text {
+                font-family: var(--main-font-medium);
+                font-size: var(--font-h1);
+                padding-left: 1.5rem;
+                padding-top: 1.5rem;
+              }
+              .card-btn {
+                position: absolute;
+                left: 0;
+                bottom: 2rem;
+                font-family: var(--main-font-medium);
+                font-size: var(--font-h1);
+                .btn-action {
+                  border: none;
+                  color: orange;
+                  outline: none;
+                  padding: 0 1.5rem;
+                  background: transparent;
+                }
+              }
+            }
+            .card-right {
+              margin: 1rem;
+              img {
+                border-radius: 5px;
+                width: 80px;
+                height: 80px;
+              }
+            }
+          }
+        }
+    }
+}

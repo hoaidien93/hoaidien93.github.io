@@ -1,0 +1,13 @@
+ define([
+    "Platform/Core/Abstract/Screen",
+    "Module/Pages/{{name}}/build",
+    ], (Screen,Module) => {
+    return (class {{name}} extends Screen {
+        constructor(application, container, _request) {
+            super(application, container, _request);
+            this.template = Module.template;
+            let ViewModel = Module.viewModel;
+            ViewModel.call(this);
+        }
+    });
+});

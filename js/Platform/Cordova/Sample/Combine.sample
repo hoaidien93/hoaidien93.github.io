@@ -1,0 +1,10 @@
+define([{{listDependencies}}],()=>{
+    return {
+        viewModel: function(){
+            {{model}}
+        },
+        template: `
+            {{template}}
+        `
+    }
+})
