@@ -52,7 +52,7 @@ define(function () {
                     }
                 }
                 // Get Page
-                require([`pages/Build/${target}.build`], (Page) => {
+                require([`Pages/Build/${target}.build`], (Page) => {
                     let page;
                     if (isStart) {
                         page = new Page(this, this.rootElement, data);
