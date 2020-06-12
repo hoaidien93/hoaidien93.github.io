@@ -2,5 +2,7 @@
     "name": "Slider",
     "tagName": "com-slider",
     "isWidget": false,
-    "dependencies": []
+    "dependencies": [
+        "Store/Store"
+    ]
 }

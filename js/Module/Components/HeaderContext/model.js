@@ -1,5 +1,5 @@
 var me = this;
-console.log(1);
+const store = require("Store/Store");
 this.isShowHome = ko.observable(false);
 this.searchInput = ko.observable("");
 this.isPageHome = ko.observable(false);
@@ -17,7 +17,7 @@ this.dataSourceChanged = (keyword) => {
 
 
 this.openSlider = (data, e) => {
-    slider.show();
+    store.isOpenSlider(true);
 }
 
 this.searchInput_OnPress = (model, event) => {

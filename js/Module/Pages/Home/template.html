@@ -1,21 +1,62 @@
 <div id="home-page">
     <com-headercontext></com-headercontext>
-    <div class="middle-header pos-fixed" data-bind="event: { tap: directToPage }">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-left">
-                    <div class="card-text">
-                        <p>Bạn cần tìm kiếm nhà trọ?</p>
-                    </div>
-                    <div class="card-btn">
-                        <button class="btn-action">Xem ngay</button>
-                    </div>
-                </div>
-                <div class="card-right">
-                    <img class="img-suggest"
-                         src="./img/man-working-home_28923-46.jpg">
-                </div>
+    <div class="body-content">
+        <div class="filter">
+            <select name="city">
+                <option value="HCM">Toàn quốc</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HCM">Hồ Chí Minh</option>
+            </select>
+            <select name="type">
+                <option value="all">Tất cả bất động sản</option>
+                <option value="nha-o">Nhà ở</option>
+                <option value="phong-tro">Phòng trọ</option>
+            </select>
+            <div class="dp-flex">
+                <select name="price-range">
+                    <option value="" selected>Khoảng giá</option>
+                    <option value="1">Dưới 500.000</option>
+                    <option value="2">500.000 - 1.000.000</option>
+                    <option value="3">1.000.000 - 2.000.000</option>
+                    <option value="4">2.000.000 - 5.000.000</option>
+                    <option value="5">Trên 5.000.000</option>
+                </select>
+                <select name="area">
+                    <option value="" selected>Diện tich</option>
+                    <option value="1">Dưới 20m²</option>
+                    <option value="1">Từ 20m² đên 40m²</option>
+                    <option value="1">Trên 40m²</option>
+                </select>
             </div>
         </div>
+        <div class="search-result">
+            <!-- ko foreach: temp -->
+            <div class="search-item">
+                <div class="image-wrapper">
+                    <img src="./img/example.jpg">
+                </div>
+                <div class="content-wrapper">
+                    <div class="content-title">Căn hộ giá rẽ quận 4 cho sinh viên</div>
+                    <div class="content-bottom">
+                        <div class="content-price">3 - 4 triệu</div>
+                        <div class="content-description">
+                            <span>12 phút trước</span>
+                            <span>Tp Hồ Chí Minh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
     </div>
+
 </div>

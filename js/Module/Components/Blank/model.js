@@ -1,13 +1,2 @@
-this.isShow = ko.observable(false);
-
-this.afterBinding = () => {
-    window.blank = this;
-}
-
-this.show = () => {
-    this.isShow(true);
-}
-
-this.hide = () => {
-    this.isShow(false);
-}
+let store = require("Store/Store");
+this.isShow = store.isShowBlank;

@@ -8,12 +8,11 @@ define(function () {
         }
 
         binding() {
-            Promise.all([this.beforeBinding()]).then(() => {
-                ko.cleanNode(this.container);
-                this.container.innerHTML = this.template;
-                ko.applyBindings(this, this.container);
-                this.afterBinding();
-            });
+            this.beforeBinding();
+            ko.cleanNode(this.container);
+            this.container.innerHTML = this.template;
+            ko.applyBindings(this, this.container);
+            this.afterBinding();
         }
 
         beforeBinding() {

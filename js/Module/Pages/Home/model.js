@@ -1,3 +1,1 @@
-this.directToPage = ()=>{
-    console.log('direct');
-}
+this.temp = new Array(10).fill(1);

@@ -2,5 +2,7 @@
     "name": "Blank",
     "tagName": "com-blank",
     "isWidget": false,
-    "dependencies": []
+    "dependencies": [
+        "Store/Store"
+    ]
 }
