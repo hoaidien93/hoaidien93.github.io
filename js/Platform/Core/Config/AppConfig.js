@@ -8,7 +8,7 @@ document.addEventListener("deviceready", () => {
         requirejs.config({
             baseUrl: 'js'
         });
-        require(["config"], function (config) {
+        require(["config","API/AbstractAPI"], function (config) {
             console.log(config);
             listComponents = config.COMPONENT_USED.map((e) => {
                 return `${config.COMPONENT_FOLDER}/Build/${e}.build`;
@@ -22,7 +22,7 @@ document.addEventListener("deviceready", () => {
                     require(['Platform/Core/Application'], function (Application) {
                         var app = new Application(document.querySelector('.app'));
                         window.app = app;
-                        app.Screen = "Home";
+                        app.Screen = "Login";
                         app.Start();
                     });
                 });

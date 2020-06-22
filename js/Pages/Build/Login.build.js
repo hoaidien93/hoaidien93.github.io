@@ -1,0 +1,1 @@
+define(["Platform/Core/Abstract/Screen","Module/Pages/Login/build"],(Screen,Module)=>(class Login extends Screen{constructor(application,container,_request){super(application,container,_request),this.template=Module.template,Module.viewModel.call(this)}}));

@@ -2,15 +2,23 @@
   .filter{
         width: 100vw;
         margin: auto;
-        padding: 10px 0px;
         background-color: #f0efef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column wrap;
+        padding: 7px 0px;
         .dp-flex{
-            padding: 7px 0px !important;
+            padding: 0px !important;
             justify-content: space-between;
             > select{
                 padding: 7px;
                 border-radius: 5px;
             }
+        }
+        select {
+            background-color: #fff;
         }
     }
     .filter > *{
@@ -27,7 +35,7 @@
         height: 1px;
         background-color: #e1dddd;
     }
-    
+
     .search-item{
         width: 100vw;
         height: 110px;
