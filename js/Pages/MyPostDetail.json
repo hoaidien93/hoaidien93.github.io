@@ -1,0 +1,8 @@
+{
+    "name": "MyPostDetail",
+    "dependencies": [
+        "Store/Store",
+        "API/Address",
+        "API/Post"
+    ]
+}

@@ -1,0 +1,1 @@
+define(["Platform/Core/Abstract/Screen","Module/Pages/MyRoom/build"],(Screen,Module)=>(class MyRoom extends Screen{constructor(application,container,_request){super(application,container,_request),this.template=Module.template,Module.viewModel.call(this)}}));

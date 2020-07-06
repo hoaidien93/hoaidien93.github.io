@@ -1,5 +1,5 @@
 var me = this;
-const store = require("Store/Store");
+const searchAPI = require("API/Search");
 this.isShowHome = ko.observable(false);
 this.searchInput = ko.observable("");
 this.isPageHome = ko.observable(false);
@@ -7,7 +7,6 @@ let matchInQuotes = false;
 me.isHoverSearchBox = ko.observable(false);
 me.isSearchResultPage = ko.observable(false);
 
-this.searchHistory = ko.observable('');
 this.dataSourceChanged = (keyword) => {
     if (keyword) {
         me.searchInput(keyword);
@@ -17,15 +16,8 @@ this.dataSourceChanged = (keyword) => {
 
 
 this.openSlider = (data, e) => {
-    store.isOpenSlider(true);
+    slider.isShow(true);
 }
-
-this.searchInput_OnPress = (model, event) => {
-    if (event.keyCode === 13 && me.searchInput()) {
-        app.setPage('SearchResult', { keyword: me.searchInput(), cate: {} });
-    }
-    return true;
-};
 
 this.backToHome = function () {
     if (app.stackScreen.length > 1) {
@@ -77,20 +69,23 @@ this.afterBinding = () => {
     headerEffect();
 }
 
-this.openSearchHistory = () => {
-    search_history.show();
-    me.isHoverSearchBox(true);
+this.callSearch = () => {
+    searchAPI.getPosts(this.searchInput() || "").then((res) => {
+        let data = res.data.hits;
+        if (app.Screen === "Home") {
+            $(document).trigger("changeSearchResult", { data });
+        }
+        else {
+            app.setPage("Home", { data });
+        }
+    }).catch((e) => {
+        console.log(e);
+    })
 }
 
-this.deleteKeyword = () => {
-    $('.searchTerm').css({ background: 'rgba(255,255,255,0.5)', color: 'var(--main-color-background)' });
-    me.searchInput("");
-    $('.searchTerm').val("").change();
-    search_history.loadListMatches({ keyword: "" });
-}
-
-this.toSearchResult = () => {
-    if (me.searchInput()) {
-        app.setPage("SearchResult", { keyword: me.searchInput(), cate: {} });
+this.onEnter = function (data, e) {
+    if(e.keyCode === 13){
+        me.callSearch();
     }
-}
+    return true;
+};

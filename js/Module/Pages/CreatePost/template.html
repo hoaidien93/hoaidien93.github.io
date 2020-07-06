@@ -1,0 +1,99 @@
+<div id="post-page">
+    <com-slider></com-slider>
+    <com-headercontext></com-headercontext>
+    <div class="popup fail" id="popup-fail">
+        <div>Vui lòng điền đầy đủ thông tin</div>
+        <button class="btn-submit" style="padding: 7px 22px;" data-bind="event: {tap: removePopupFail}">OK</button>
+    </div>
+    <div class="popup success" id="popup-success">
+        <div>Đăng bài thành công</div>
+        <button class="btn-submit" style="padding: 7px 22px;" data-bind="event: {tap: removePopupSuccess}">OK</button>
+    </div>
+    <div class="body-content">
+        <h3 class="header-title">Thêm bài đăng</h3>
+        <form class="content-wrapper" id="form-post">
+            <div class="row">
+                <div class="title">Tiêu đề</div>
+                <div class="content">
+                    <input name="title" name="title" placeholder="Tiêu đề bài đăng" data-bind="textInput: title">
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Quận</div>
+                <div class="content">
+                    <select name="district_id" data-bind="
+                            options: listDistrict,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedDistrict
+                            ">
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Phường</div>
+                <div class="content">
+                    <select name="ward_id" data-bind="
+                            options: listWards,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedWard
+                    ">
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Đường</div>
+                <div class="content">
+                    <textarea data-bind="textInput: location" name="location"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Loại phòng</div>
+                <div class="content">
+                    <select name="room_type_id" data-bind="
+                            options: listRoomTypes,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedRoomType
+                    ">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Diện tích</div>
+                <div class="content">
+                    <input type="text" id="title" placeholder="Đơn vị (m²)" name="area" data-bind="textInput: area">
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Giá tiền</div>
+                <div class="content">
+                    <input type="text" name="price" placeholder="Đơn vị (VNĐ)" data-bind="textInput: price">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="title">Ghi chú</div>
+                <div class="content">
+                    <textarea data-bind="textInput: description" name="description"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Ảnh chi tiết</div>
+                <div class="content">
+                    <input type="file" name="files" accept="image/*" multiple="multiple" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="title"></div>
+                <div class="note">* Tối thiểu 5 hình ảnh</div>
+            </div>
+    </div>
+    <div class="btn-wrapper">
+        <button class="btn-submit" data-bind="event: {tap: publish}">Đăng bài</button>
+    </div>
+    </form>
+</div>

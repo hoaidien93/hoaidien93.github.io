@@ -1,0 +1,26 @@
+com-loading{
+    .loader {
+        position: fixed;
+        top: 45%;
+        left: 45%;
+        z-index: 150;
+        border: 6px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 6px solid var(--main-color-orange-dark);
+        width: 40px;
+        height: 40px;
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+      }
+      
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+}

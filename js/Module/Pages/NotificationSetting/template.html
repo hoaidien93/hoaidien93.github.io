@@ -1,0 +1,75 @@
+<div id="notify-page">
+    <com-slider></com-slider>
+    <com-headercontext></com-headercontext>
+    <div class="popup success" id="popup-success">
+        <div>Cập nhật thành công</div>
+        <button class="btn-submit" style="padding: 7px 22px;" data-bind="event: {tap: removePopupSuccess}">OK</button>
+    </div>
+    <div class="body-content">
+        <h3 class="header-title">Thông tin cấu hình</h3>
+        <div class="btn-toggle">
+            <label class="switch">
+                <input type="checkbox" data-bind="checked: isOpenNoti">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="left">
+                    Giá
+                </div>
+                <div class="right">
+                    <select name="price-range" data-bind="value: selectedPrice">
+                        <option value="0">Khoảng giá</option>
+                        <option value="1">Dưới 1.000.000</option>
+                        <option value="2">1.000.000 - 2.000.000</option>
+                        <option value="3">2.000.000 - 5.000.000</option>
+                        <option value="4">Trên 5.000.000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="left">
+                    Quận
+                </div>
+                <div class="right">
+                    <select name="district_id" data-bind="
+                        options: listDistrict,
+                        optionsText: function(item){return item.name},
+                        optionsValue: function(item){return item.id},
+                        value: selectedDistrict">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="left">
+                    Phường
+                </div>
+                <div class="right">
+                    <select name="ward_id" data-bind="
+                        options: listWards,
+                        optionsText: function(item){return item.name},
+                        optionsValue: function(item){return item.id},
+                        value: selectedWard">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="left">
+                    Diện tích
+                </div>
+                <div class="right">
+                    <select name="area" data-bind="value: selectedArea">
+                        <option value="0">Diện tich</option>
+                        <option value="1">Dưới 20m²</option>
+                        <option value="2">Từ 20m² đên 40m²</option>
+                        <option value="3">Trên 40m²</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="btn-wrapper">
+            <button class="update" data-bind="event: {tap: updateNoti}">Cập nhật</button>
+        </div>
+    </div>
+</div>

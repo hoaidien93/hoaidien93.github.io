@@ -1,0 +1,6 @@
+{
+    "name": "PostDetail",
+    "dependencies": [
+        "API/Post"
+    ]
+}

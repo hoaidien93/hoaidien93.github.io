@@ -1,0 +1,6 @@
+{
+    "name": "MyRoom",
+    "dependencies": [
+        "API/Post"
+    ]
+}

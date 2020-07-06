@@ -1,0 +1,8 @@
+{
+    "name": "CreatePost",
+    "dependencies": [
+        "API/Address",
+        "Store/Store",
+        "API/Post"
+    ]
+}

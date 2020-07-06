@@ -21,14 +21,10 @@
             </div>
         </div>
         <div class="search-box">
-            <input type="text" id="search" class="searchTerm" placeholder="Bạn cần tìm gì?" data-bind="text:
-                                searchInput, event:
-                                { keypress: searchInput_OnPress, tap:
-                                openSearchHistory, input: searchHistory }" autocomplete="off">
-            <!-- ko if: searchInput() == "" -->
-            <svg class="search-icon" data-bind="event: { tap:
-                                toSearchResult }" xmlns="http://www.w3.org/2000/svg" width="24.867" height="24.203"
-                viewBox="0 0
+            <input type="text" id="search" class="searchTerm" placeholder="Bạn cần tìm gì?"
+                data-bind="textInput: searchInput,event: {keypress: onEnter}">
+            <svg class="search-icon" data-bind="event: { tap: callSearch }" xmlns="http://www.w3.org/2000/svg"
+                width="24.867" height="24.203" viewBox="0 0
                                 24.867 24.203">
                 <g id="Group_459" data-name="Group 459" transform="translate(0)">
                     <path id="Path_982" data-name="Path 982"
@@ -40,18 +36,6 @@
                                             -686.552)" fill="#fff" />
                 </g>
             </svg>
-            <!-- /ko -->
-            <!-- ko if: searchInput() != "" -->
-            <svg class="search-icon" style="top: 30%" data-bind="event: { tap: deleteKeyword
-                                        }" xmlns="http://www.w3.org/2000/svg" width="24.867" height="24.203"
-                viewBox="0 0 24.867 24.203">
-                <path id="Path_1160" data-name="Path
-                                            1160"
-                    d="M1836.011,4630.495l-1.505-1.493-6.012,5.991-5.962-5.939-1.507,1.5,6,5.972-6.015,5.993L1822.5,4644l6.025-6.006,5.978,5.955,1.507-1.5-5.994-5.976Z"
-                    transform="translate(-1821.006
-                                            -4629.002)" fill="#aaa" />
-            </svg>
-            <!-- /ko -->
         </div>
     </div>
 </div>

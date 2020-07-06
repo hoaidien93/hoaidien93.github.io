@@ -20,9 +20,9 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-firebase-analytics": "4.3.0",
-    "cordova-plugin-firebase-messaging": "4.4.1"
+    "cordova-plugin-firebase-messaging": "4.4.1",
+    "cordova-plugin-whitelist": "1.3.4"
 }
 // BOTTOM OF METADATA
 });

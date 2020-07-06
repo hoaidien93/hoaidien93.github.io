@@ -1,0 +1,8 @@
+{
+    "name": "Loading",
+    "tagName": "com-loading",
+    "isWidget": false,
+    "dependencies": [
+        "Store/Store"
+    ]
+}

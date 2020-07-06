@@ -1,0 +1,92 @@
+<div id="post-page">
+    <com-slider></com-slider>
+    <com-headercontext></com-headercontext>
+    <div class="popup success" id="popup-success">
+        <div data-bind="text: status"></div>
+        <button class="btn-submit" style="padding: 7px 22px;" data-bind="event: {tap: removePopupSuccess}">OK</button>
+    </div>
+    <div class="btn-toggle">
+        <label class="switch">
+            <input type="checkbox" data-bind="checked: isOpenStatus">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <form class="body-content" id="form">
+        <h3 class="header-title">Cập nhật bài đăng</h3>
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="title">Tiêu đề</div>
+                <div class="content">
+                    <input type="text" id="title" placeholder="Tiêu đề bài đăng" data-bind="textInput: title">
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Quận</div>
+                <div class="content">
+                    <select name="district" data-bind="
+                            options: listDistrict,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedDistrict
+                            " disabled class="disabled">
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Phường</div>
+                <div class="content">
+                    <select name="ward" data-bind="
+                            options: listWards,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedWard
+                    " disabled class="disabled">
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Đường</div>
+                <div class="content">
+                    <textarea data-bind="textInput: location" disabled class="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Loại phòng</div>
+                <div class="content">
+                    <select name="typeRoom" data-bind="
+                            options: listRoomTypes,
+                            optionsText: function(item){return item.name},
+                            optionsValue: function(item){return item.id},
+                            value: selectedRoomType
+                    " disabled class="disabled">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Diện tích</div>
+                <div class="content">
+                    <input type="text" id="title" placeholder="Đơn vị (m²)" name="area" data-bind="textInput: area"
+                        disabled class="disabled">
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Giá tiền</div>
+                <div class="content">
+                    <input type="text" id="title" placeholder="Đơn vị (VNĐ)" data-bind="textInput: price">
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Ghi chú</div>
+                <div class="content">
+                    <textarea data-bind="textInput: description"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="btn-wrapper">
+        <button class="btn-submit delete" data-bind="event: {tap: deletePost}">Xóa</button>
+        <button class="btn-submit" data-bind="event: {tap: update}">Cập Nhật</button>
+    </div>
+</div>

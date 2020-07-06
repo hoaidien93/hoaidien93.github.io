@@ -10,6 +10,7 @@ define(function () {
         let appNext; this.setPage = (target, data = {}, isBack = false, isStart = false) => {
             if (!preventChangePage) {
                 preventChangePage = true;
+                $(window).off('scroll');
                 setTimeout(() => { preventChangePage = false }, 500);
                 // Push to stack screen
                 if (!isBack && !isStart) {
@@ -82,8 +83,6 @@ define(function () {
         }
 
         function setFixed() {
-            console.log(1);
-            console.log($('.pos-fixed').length);
             $('.pos-fixed').css({
                 "position": "fixed",
             });
