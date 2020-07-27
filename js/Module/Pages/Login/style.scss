@@ -1,0 +1,98 @@
+.login-page {
+    background-image: url("../img/bg.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .header-bg {
+        img {
+            width: 100%;
+        }
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .img-wrapper {
+        width: 150px;
+        margin: auto;
+        margin-bottom: 10px;
+        > img {
+            width: 100%;
+        }
+    }
+    .title {
+        color: white;
+        font-size: 2rem;
+        font-family: Roboto;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 50px;
+    }
+    .sign-in-wrapper {
+        width: 100%;
+        text-align: center;
+        button#signInAndroid {
+            padding: 10px 15px;
+            border: none;
+            background: #fff;
+            border-radius: 5px;
+            border: 1px solid var(--main-color-orange-dark);
+        }
+        .g-signin2 {
+            justify-content: center;
+            display: flex;
+            > div {
+                height: 37px;
+                width: 140px !important;
+                border-radius: 5px;
+                .abcRioButtonContentWrapper {
+                    display: flex;
+                    align-items: center;
+                    .abcRioButtonContents {
+                        padding-left: 17px;
+                    }
+                }
+            }
+        }
+    }
+
+    #enter-number {
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid;
+    }
+    .w-80 {
+        width: 90vw;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 20px;
+        button.btn-continue {
+            border: none;
+            padding: 12px 0px;
+            border-radius: 5px;
+        }
+        input {
+            height: 36px;
+            font-size: 1.5rem;
+        }
+        input#enter-number:focus {
+            outline: none;
+            border-color: #2211ec;
+        }
+        .phone-number {
+            width: 100%;
+            margin-bottom: 5px;
+            color: gray;
+            text-align: left;
+        }
+    }
+    .w-80 > * {
+        width: 100%;
+    }
+}

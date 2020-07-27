@@ -1,12 +1,28 @@
-<div>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-    </script>
+<div class="login-page">
+    <div class="header-bg">
+        <img src="./img/header_bg.svg">
+    </div>
+    <div class="title">
+        <div class="img-wrapper">
+            <img src="./img/logo.png">
+        </div>
+        HD System
+    </div>
+    <div class="sign-in-wrapper">
+        <div class="w-80">
+            <div class="phone-number">Đăng nhập bằng số điện thoại của bạn</div>
+            <input type="text" id="enter-number" data-bind="textInput: phoneNumber">
+        </div>
+
+        <div class="w-80">
+            <button class="btn-continue" data-bind="event: {tap: getCode}">Tiếp tục</button>
+        </div>
+
+        <div id="signInBrowser" class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <button id="signInAndroid" onclick="return gpPlusLogin();">Login with Google</button>
+    </div>
+    <div class="footer_img">
+        <img src="./img/footer_bg.svg" />
+    </div>
 </div>

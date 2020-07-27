@@ -1,6 +1,7 @@
 let store = require("Store/Store");
 this.isShow = ko.observable(false);
-
+this.fullName = ko.observable(localStorage.getItem('name') || "");
+this.avatar = ko.observable(localStorage.getItem('imageURL') || "");
 this.backHome = () => {
 
 }
@@ -11,7 +12,15 @@ this.myRoom = () => {
 
 }
 this.logout = () => {
-
+    let user_id = localStorage.getItem("userId");
+    cordova.plugins.firebase.messaging.unsubscribe(`/topics/notification.user.${user_id}`).then((e)=>{
+        console.log(e)
+    }).catch((e)=>{
+        console.log(e);
+    });
+    store.isShowBlank(false);
+    localStorage.clear();
+    app.setPage("Login");
 }
 this.changePage = (page) => {
     app.setPage(page);

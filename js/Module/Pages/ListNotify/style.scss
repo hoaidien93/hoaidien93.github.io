@@ -1,0 +1,35 @@
+#list-notify {
+    h3.header-title {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .empty-content {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 1rem;
+        font-style: italic;
+    }
+    .content-notify {
+        display: flex;
+        height: 100%;
+        padding: 10px;
+        border-bottom: 0.5px solid gray;
+        background-color: #d3d1d180;
+        .left {
+            width: 6%;
+            > img {
+                width: 100%;
+            }
+        }
+
+        .right {
+            width: 87%;
+            margin-left: 3%;
+            .date {
+                margin-top: 7px;
+                font-size: 0.8rem;
+                color: gray;
+            }
+        }
+    }
+}

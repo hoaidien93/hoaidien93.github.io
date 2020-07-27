@@ -1,8 +1,7 @@
 const nofifyAPI = require("API/Notify");
 const addressAPI = require("API/Address");
 const store = require("Store/Store");
-
-this.isOpenNoti = ko.observable(true);
+this.isOpenNoti = ko.observable();
 this.currentSetting = ko.observable({});
 this.listDistrict = ko.observableArray([]);
 this.selectedDistrict = ko.observable(0);
@@ -10,20 +9,33 @@ this.listWards = ko.observableArray([]);
 this.selectedWard = ko.observable(0);
 this.selectedPrice = ko.observable(0);
 this.selectedArea = ko.observable(0);
+let statusFirstTime = true;
 
 let isFirstTime = true;
 this.isOpenNoti.subscribe((newValue) => {
-    console.log(newValue);
-    nofifyAPI.update({
-        enable: +newValue
-    }).then((res) => {
-        showPopupSuccess();
-    }).catch((e) => {
-        console.log(e)
-    })
+    if (statusFirstTime) {
+        statusFirstTime = false;
+        if(!newValue){
+            $('select').prop("disabled", true);
+        }
+    } else {
+        nofifyAPI.update({
+            enable: +newValue
+        }).then((res) => {
+            showPopupSuccess();
+            if(!newValue){
+                $('select').prop("disabled", true);
+            }else{
+                $('select').prop("disabled", false)
+            }
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
 });
 
 nofifyAPI.getCurrentSettings().then((res) => {
+    this.isOpenNoti(!!res.data.enable);
     this.currentSetting(res.data);
     getDistrict();
     updatePrice(this.currentSetting().min_price, this.currentSetting().max_price);
@@ -185,9 +197,9 @@ this.updateNoti = () => {
         ward_id: this.selectedWard(),
     };
 
-    nofifyAPI.update(dataChange).then((res)=>{
+    nofifyAPI.update(dataChange).then((res) => {
         showPopupSuccess();
-    }).catch((e)=>{
+    }).catch((e) => {
         console.log(e)
     })
 }
@@ -199,6 +211,6 @@ let showPopupSuccess = () => {
 
 this.removePopupSuccess = () => {
     store.isShowBlank(false);
-    $("#popup-success").removeClass("active");
-
+    app.setPage("Home");
 }
+

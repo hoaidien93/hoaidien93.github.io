@@ -1,9 +1,9 @@
 {
     "name": "Home",
     "dependencies": [
-        "Store/Store",
         "API/Search",
         "API/Address",
-        "API/Post"
+        "API/Post",
+        "API/UserAPI"
     ]
 }

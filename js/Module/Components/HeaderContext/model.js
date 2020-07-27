@@ -1,5 +1,11 @@
-var me = this;
 const searchAPI = require("API/Search");
+const userAPI = require("API/UserAPI");
+this.totalNotify = ko.observable();
+
+userAPI.getMyNotify().then((e) => {
+    this.totalNotify(e.data.count);
+}).catch((e) => { console.log(e) });
+var me = this;
 this.isShowHome = ko.observable(false);
 this.searchInput = ko.observable("");
 this.isPageHome = ko.observable(false);
@@ -76,7 +82,7 @@ this.callSearch = () => {
             $(document).trigger("changeSearchResult", { data });
         }
         else {
-            app.setPage("Home", { data });
+            app.setPage("Home", { data ,searchInput: this.searchInput()});
         }
     }).catch((e) => {
         console.log(e);
@@ -84,7 +90,7 @@ this.callSearch = () => {
 }
 
 this.onEnter = function (data, e) {
-    if(e.keyCode === 13){
+    if (e.keyCode === 13) {
         me.callSearch();
     }
     return true;

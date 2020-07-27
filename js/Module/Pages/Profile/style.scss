@@ -1,0 +1,128 @@
+#my-profile {
+    .header-title {
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .profile {
+        .image-wrapper {
+            height: 115px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            .image-circle {
+                width: 115px;
+                height: 115px;
+                padding: 5px;
+                border-radius: 50%;
+                border: 1px solid #6c6b6b;
+                > img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+    .name {
+        text-align: center;
+        padding: 10px 0px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > span {
+            padding-left: 10px;
+        }
+        input {
+            margin-left: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            width: 200px;
+            color: black !important;
+        }
+        .icon-check {
+            position: unset !important;
+            margin-left: 15px;
+        }
+        img.img-edit.big {
+            position: unset !important;
+            right: 0px;
+            width: 27px !important;
+            margin-left: 10px;
+        }
+    }
+    .profile-detail {
+        .row {
+            padding-top: 10px;
+            width: 92vw;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            i {
+                color: #f7ab2e;
+                width: 20px;
+            }
+            > input.input-edit {
+                width: calc(100% - 10px);
+                padding: 5px 7px;
+                border: 1px solid black;
+                border-radius: 5px;
+                margin-left: 10px;
+                color: black;
+            }
+        }
+    }
+    .popup {
+        position: fixed;
+        background: #fff;
+        top: 37%;
+        width: 80vw;
+        border-radius: 5px;
+        margin: 0 10vw;
+        height: 140px;
+        z-index: 14;
+        text-align: center;
+        font-size: 1.1rem;
+        padding-top: 19px;
+        transform: scale(0);
+        transition: 0.3s;
+
+        > div {
+            padding-bottom: 40px;
+        }
+    }
+    .popup.active {
+        transform: scale(1);
+    }
+
+    img.img-edit,
+    .icon-check {
+        width: 25px;
+        position: absolute;
+        right: 20px;
+        padding: 5px;
+    }
+    .notEdit {
+        input {
+            display: none;
+        }
+        .icon-check {
+            display: none;
+        }
+    }
+    .notEdit.isEdit {
+        .icon-check,
+        input {
+            display: block !important;
+            color: #569233;
+        }
+        .img-edit,
+        span {
+            display: none !important;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "name": "ListNotify",
+    "dependencies": [
+        "API/UserAPI"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "name": "Profile",
+    "dependencies": [
+        "API/UserAPI"
+    ]
+}

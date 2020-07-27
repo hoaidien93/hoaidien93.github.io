@@ -2,8 +2,10 @@ const searchAPI = require("API/Search");
 const addressAPI = require("API/Address");
 const postAPI = require("API/Post");
 const store = require("Store/Store");
+const userAPI = require("API/UserAPI");
 const PAGE_SIZE = 10;
 let dataChangePage = this._request.data;
+let searchInput = this._request.searchInput || "";
 this.listPinID = ko.observableArray([]);
 this.temp = new Array(10).fill(1);
 this.resultSearch = ko.observableArray([]);
@@ -14,6 +16,9 @@ this.selectedPrice = ko.observable(0);
 this.selectedDistrict = ko.observable({});
 this.selectedWard = ko.observable({});
 let isSetFilter = false;
+this.order = ko.observable(1);
+this.isShowEmpty = ko.observable(false);
+let me = this;
 this.converterPrice = ko.pureComputed(() => {
     let res = {
         max_price: 0,
@@ -66,10 +71,16 @@ this.converterArea = ko.pureComputed(() => {
     return res;
 });
 
+this.resultSearch.subscribe(function (newValue) {
+    if (newValue.length === 0) {
+        me.isShowEmpty(true);
+    } else {
+        me.isShowEmpty(false);
+    }
+})
 
 let page = 0;
 let size = 2;
-let me = this;
 
 addressAPI.getDistricts().then((res) => {
     let listDiscict = [{
@@ -102,12 +113,32 @@ this.selectedDistrict.subscribe((e) => {
         ]);
     }
 })
-this.afterBinding = () => {
+
+let subscribeMyTopic = (user_id) => {
     cordova.plugins.firebase.messaging.requestPermission({ forceShow: true }).then(function () {
-        console.log("You'll get foreground notifications when a push message arrives");
-        cordova.plugins.firebase.messaging.subscribe("Test");
+        cordova.plugins.firebase.messaging.subscribe(`/topics/notification.user.${user_id}`).then((e) => {
+            console.log(e);
+        }).catch((e) => {
+            console.log(e);
+        })
     }).catch((e) => {
     });
+}
+
+this.afterBinding = () => {
+    $('#search').val(searchInput)
+    cordova.plugins.firebase.messaging.onMessage(function (payload) {
+        setTimeout(() => {
+            app.setPage("PostDetail", { id: payload.post_id });
+        }, 1000);
+    });
+
+    cordova.plugins.firebase.messaging.onBackgroundMessage(function (payload) {
+        setTimeout(() => {
+            app.setPage("PostDetail", { id: payload.post_id });
+        }, 1000);
+    });
+
 
     $(window).off('scroll');
     // Detect scroll end of page
@@ -120,7 +151,24 @@ this.afterBinding = () => {
                 else getStartPage();
             }
         }
+    });
+
+    userAPI.getInfo().then((res) => {
+        localStorage.setItem("imageURL", res.data.avatar);
+        localStorage.setItem("name", res.data.display_name);
+        localStorage.setItem("email", res.data.email || "");
+        localStorage.setItem("userId", res.data.user_id);
+        localStorage.setItem("created_at", res.data.created_at);
+        localStorage.setItem("phone", res.data.phone || "");
+        localStorage.setItem("address", res.data.address || "Hồ Chí Minh");
+        $('com-slider img')[0].src = res.data.avatar;
+        $('com-slider .information-user p')[0].innerHTML = window.localStorage.getItem('name');
+        subscribeMyTopic(res.data.user_id);
+    }).catch((e) => {
+        console.log(e);
     })
+
+
 }
 
 let getStartPage = () => {
@@ -158,19 +206,6 @@ $(document).on("changeSearchResult", (event, res) => {
 })
 
 this.addFavorite = (data, event) => {
-    if (data.pinned()) {
-        postAPI.unpin(data.id).then((res) => {
-            data.pinned(false);
-        }).catch((e) => console.log(e));
-    }
-    else {
-        event.currentTarget.getElementsByTagName('path')[0].setAttribute("fill", "red");
-        postAPI.pin(data.id).then((res) => {
-            if (!res.code) {
-                app.setPage("MyPin");
-            }
-        }).catch((e) => console.log(e));
-    }
 }
 
 (function () {
@@ -197,12 +232,34 @@ let callFilter = () => {
         "max_price": this.converterPrice().max_price,
         "min_price": this.converterPrice().min_price,
         "ward_id": this.selectedWard(),
-        "location": document.getElementById("search").value
-    },page++).then((res) => {
+        "location": document.getElementById("search").value,
+        "order": this.order()
+    }, page++).then((res) => {
         store.isShowLoading(false);
         size = Math.ceil(res.data.total / PAGE_SIZE);
         this.resultSearch.push(...res.data.hits.map((e) => { return Object.assign(e, { pinned: ko.observable(false) }) }));
     }).catch((e) => {
         console.log(e);
     })
+}
+
+this.removePopupSuccess = () => {
+    store.isShowBlank(false);
+    $("#popup-success").removeClass("active");
+    // Get name input checked
+    this.order($("input[name='order']:checked").val());
+}
+
+this.getOrder = () => {
+    $(`input[value='${this.order()}']`)[0].checked = true;
+    $("#popup-success").addClass("active");
+    store.isShowBlank(true);
+}
+
+
+this.changePageDetail = (data, event) => {
+    //changePageDetail
+    app.setPage("PostDetail", Object.assign(data, {
+        location: $('#search').val()
+    }));
 }

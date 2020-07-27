@@ -6,7 +6,6 @@ define(["API/AbstractAPI"], () => {
         AbstractAPI.call(this, {});
         this.indexPage = (page = 0) => {
             return this.send("POST", "/post/search", {
-                "order": 1,
                 "page": page,
                 'size': SIZE
             });
@@ -14,7 +13,6 @@ define(["API/AbstractAPI"], () => {
 
         this.getPosts = (str, page = 0) => {
             return this.send("POST", "/post/search", {
-                "order": 1,
                 "page": page,
                 "size": SIZE,
                 "location": str
@@ -23,7 +21,6 @@ define(["API/AbstractAPI"], () => {
 
         this.filter = (data,page = 0) => {
             return this.send("POST", "/post/search", Object.assign({
-                "order": 1,
                 "page": page,
                 "size": SIZE,
             }, data));

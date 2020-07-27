@@ -1,13 +1,13 @@
 <div class="top">
     <div class="border-avatar">
         <div class="avatar">
-            <img src="https://huongnq.s3-ap-southeast-1.amazonaws.com/avatars/defaut.jpg">
+            <img data-bind="attr: {src: avatar}, event: {tap: changePage.bind(this,'Profile')}"  referrerpolicy="no-referrer">
         </div>
     </div>
     <div class="information-user">
         <div class="content">
             <br>
-            <p style="font-weight: bold;padding-bottom: 10px;">Hoài Diễn</p>
+            <p style="font-weight: bold;padding-bottom: 10px;" data-bind="text: fullName"></p>
             <span style="color: #F79900;">Hồ Chí Minh</span>
         </div>
     </div>

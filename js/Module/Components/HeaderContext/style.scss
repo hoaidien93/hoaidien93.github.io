@@ -1,147 +1,166 @@
 com-headercontext {
+  height: 58px;
+  display: block;
+  .header-homepage {
+    background: linear-gradient(90deg, #f79800, #e9bd00);
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 12;
+    padding-right: 12px;
+    padding-top: 5px;
     height: 58px;
-    display: block;
-    .header-homepage {
-      background: linear-gradient(90deg, #f79800, #e9bd00);
-      display: flex;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 12;
-      padding-right: 12px;
-      padding-top: 5px;
-      height: 58px;
-    }
-    .back-btn {
-      display: flex;
-      padding-right: 7.5px;
-      padding-left: 15px;
-  
-      i {
-        font-size: 1.7rem;
-        color: white;
-      }
-    }
-  
-    .top-header {
-      display: flex;
-      width: 100%;
-      margin: 7.5px 0;
-      align-items: center;
-      position: relative;
-      .top-30 {
-        top: 30%;
-      }
-  
-      .menu {
-        color: white;
-        padding: 5px 5px 5px 12.5px;
-      }
-  
-      .searchTerm {
-        width: 100%;
-        border: none;
-        border-radius: 4px;
-        padding-left: 15px;
-        padding-right: 40px;
-        height: var(--button-height);
-        outline: none;
-        color: var(--main-color-background);
-        background: rgba(255, 255, 255, 0.5);
-        box-sizing: border-box;
-      }
-  
-      .search-icon {
-        position: absolute;
-        top: 20%;
-        right: 1rem;
-        font-size: var(--font-icon-size);
-        color: var(--main-color-background);
-      }
-  
-      .home-icon {
-        font-size: 20px;
-        padding: 0 7.5px 0 7.5px;
-  
-        svg {
-          color: var(--main-color-background);
-        }
-      }
-  
-      .search-box {
-        position: relative;
-        font-size: var(--font-h2);
-        width: 100%;
-        padding-left: 7.5px;
-  
-        input::placeholder {
-          color: white;
-        }
-  
-        .dropdown-keywords {
-          width: 100%;
-        }
-      }
-  
-      .name-title {
-        color: var(--main-color-background);
-        font-size: var(--font-large-titles);
-        font-weight: bold;
-        text-align: center;
-        height: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-  
-      .shopping-cart {
-        margin-top: 5px;
-        width: auto;
-        padding: 0 15px;
-        float: right;
-        position:relative;
-        .item-in-cart{
-          position: absolute;
-          right: 15%;
-          top: -10%;
-          width: 15px;
-          height: 15px;
-          border-radius: 100%;
-          color: white;
-          font-weight: bold;
-          background: red;
-          font-size: 70%;
-          text-align: center;
-        }
-      }
-    }
-  
-    .top-header#isHomePage{
-      margin-top: 0px;
-    }
   }
-  
-  .header-scrolled {
-    background: linear-gradient(90deg, #f79800, #e9bd00) !important;
-    width: 100vw;
-    transition: background .2s linear;
-  
+  .back-btn {
+    display: flex;
+    padding-right: 7.5px;
+    padding-left: 15px;
+
     i {
-      color: var(--main-color-background) !important;
-    }
-  
-    svg {
-      path,rect{
-        fill: var(--main-color-background) !important;
-      }
-    }
-    .searchTerm{
-      color: var(--main-color-background) !important;
+      font-size: 1.7rem;
+      color: white;
     }
   }
-  
-  
-  
-  
-  
+
+  .top-header {
+    display: flex;
+    width: 100%;
+    margin: 7.5px 0;
+    align-items: center;
+    position: relative;
+    .top-30 {
+      top: 30%;
+    }
+
+    .menu {
+      color: white;
+      padding: 5px 5px 5px 12.5px;
+    }
+
+    .searchTerm {
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      padding-left: 15px;
+      padding-right: 40px;
+      height: var(--button-height);
+      outline: none;
+      color: var(--main-color-background);
+      background: rgba(255, 255, 255, 0.5);
+      box-sizing: border-box;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 20%;
+      right: 1rem;
+      font-size: var(--font-icon-size);
+      color: var(--main-color-background);
+    }
+
+    .home-icon {
+      font-size: 20px;
+      padding: 0 7.5px 0 7.5px;
+
+      svg {
+        color: var(--main-color-background);
+      }
+    }
+
+    .search-box {
+      position: relative;
+      font-size: var(--font-h2);
+      width: 100%;
+      padding-left: 7.5px;
+
+      input::placeholder {
+        color: white;
+      }
+
+      .dropdown-keywords {
+        width: 100%;
+      }
+    }
+
+    .name-title {
+      color: var(--main-color-background);
+      font-size: var(--font-large-titles);
+      font-weight: bold;
+      text-align: center;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .shopping-cart {
+      margin-top: 5px;
+      width: auto;
+      padding: 0 15px;
+      float: right;
+      position: relative;
+      .item-in-cart {
+        position: absolute;
+        right: 15%;
+        top: -10%;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        color: white;
+        font-weight: bold;
+        background: red;
+        font-size: 70%;
+        text-align: center;
+      }
+    }
+  }
+
+  .top-header#isHomePage {
+    margin-top: 0px;
+  }
+  .notify {
+    position: relative;
+    > i {
+      font-size: 1.35rem;
+      padding-left: 10px;
+      color: white;
+    }
+    > span {
+      position: absolute;
+      font-size: 0.6rem;
+      padding: 3px;
+      background-color: red;
+      border-radius: 50%;
+      top: -5px;
+      right: -7px;
+      color: white;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.header-scrolled {
+  background: linear-gradient(90deg, #f79800, #e9bd00) !important;
+  width: 100vw;
+  transition: background 0.2s linear;
+
+  i {
+    color: var(--main-color-background) !important;
+  }
+
+  svg {
+    path,
+    rect {
+      fill: var(--main-color-background) !important;
+    }
+  }
+  .searchTerm {
+    color: var(--main-color-background) !important;
+  }
+}

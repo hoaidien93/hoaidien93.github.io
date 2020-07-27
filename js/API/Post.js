@@ -27,8 +27,10 @@ define(["API/AbstractAPI"], () => {
             });
         }
 
-        this.getPostDetail = (id) => {
-            return this.send("GET", `/post/view-detail?post_id=${id}`, {
+        this.getPostDetail = (id, location = "") => {
+            return this.send("POST", `/post/view-detail`, {
+                post_id: id,
+                location: location
             });
         }
 
@@ -59,12 +61,21 @@ define(["API/AbstractAPI"], () => {
             });
         }
 
-        this.updateStatus = (post_id,status) =>{
-            return this.send("POST","/post/update/status",{
+        this.updateStatus = (post_id, status) => {
+            return this.send("POST", "/post/update/status", {
                 post_id,
                 status
             })
         }
+
+        this.report = (post_id, content) => {
+            return this.send("POST", "/user/feedback", {
+                post_id,
+                content
+            })
+        }
+
+
     }
     return new APIPost();
 })

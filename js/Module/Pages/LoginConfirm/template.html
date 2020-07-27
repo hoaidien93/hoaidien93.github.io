@@ -1,0 +1,59 @@
+<div class="login-page">
+    <div class="back-btn" data-bind="event: {tap: backPage}">
+        <i class="far fa-chevron-left"></i>
+    </div>
+    <div class="header-bg">
+        <img src="./img/header_bg.svg">
+    </div>
+    <div class="title" style="padding-bottom: 30px;">
+        <div class="img-wrapper">
+            <img src="./img/logo.png">
+        </div>
+        HD System
+    </div>
+    <div class="sign-in-wrapper">
+        <div class="w-80" style="margin-bottom: 35px;">
+            <div class="status">Đã gởi mã đến <span data-bind="text: parsePhoneNumber"></span></div>
+            <div class="phone-number" style="text-align: center;">Nhập mã bảo mật</div>
+            <div class="mm-number">
+                <div class="mm-number-container">
+                    <div class="mm-number-input">
+                        <div class="mm-number-input-container animated">
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" class="animated" min="0" max="9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-80">
+            <button class="btn-continue" data-bind="event: {tap: confirm}">Xác nhận</button>
+        </div>
+        <div class="w-80">
+            <div>Bạn không nhận được mã ?
+                <span id="sendCodeAgain" data-bind="hidden: showSendAgain">
+                    Gởi lại sau <span id="counter">30</span>
+                </span>
+                <span data-bind="event: {tap: sendAgain}, visible: showSendAgain"
+                    style="color: green; text-decoration: underline">Gởi
+                    lại</span>
+            </div>
+        </div>
+    </div>
+</div>

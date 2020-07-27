@@ -2,6 +2,6 @@
     "name": "HeaderContext",
     "tagName": "com-headercontext",
     "dependencies": [
-        "Store/Store"
+        "API/UserAPI"
     ]
 }

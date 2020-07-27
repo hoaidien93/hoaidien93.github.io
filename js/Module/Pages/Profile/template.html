@@ -1,0 +1,56 @@
+<div id="my-profile">
+    <com-slider></com-slider>
+    <com-headercontext></com-headercontext>
+    <div class="popup success" id="popup-success">
+        <div>Cập nhật thành công</div>
+        <button class="btn-submit" style="padding: 7px 22px;" data-bind="event: {tap: removePopupSuccess}">OK</button>
+    </div>
+    <div class="body-content">
+        <div class="profile">
+            <form class="image-wrapper" id="updateAvatar">
+                <label class="image-circle" for="myInputFile">
+                    <img data-bind="attr: {src: avatar}" id="avatar">
+                    <input type="file" name="avatar" id="myInputFile" style="display:none;" />
+                </label>
+            </form>
+            <div class="name notEdit">
+                <span data-bind="text: name"></span>
+                <input type="text" class="input-edit" name="display_name">
+                <img src="./img/edit.svg" class="img-edit big">
+                <i class="fa fa-check icon-check" aria-hidden="true"></i>
+            </div>
+            <div class="profile-detail">
+                <div class="row notEdit">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span style="padding-left: 10px;" data-bind="text: location"></span>
+                    <input type="text" class="input-edit" name="address">
+                    <img src="./img/edit.svg" class="img-edit">
+                    <i class="fa fa-check icon-check"  aria-hidden="true"></i>
+                </div>
+                <div class="row notEdit">
+                    <i class="fa fa-phone " aria-hidden="true"></i>
+                    <span style="padding-left: 10px;" data-bind="text: phone"></span>
+                    <input type="text" class="input-edit"  name="phone">
+                    <img src="./img/edit.svg" class="img-edit">
+                    <i class="fa fa-check icon-check"  aria-hidden="true"></i>
+
+                </div>
+                <div class="row notEdit">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span style="padding-left: 10px;" data-bind="text: email"></span>
+                    <input type="text" class="input-edit" name="email">
+                    <img src="./img/edit.svg" class="img-edit">
+                    <i class="fa fa-check icon-check"  aria-hidden="true"></i>
+
+                </div>
+                <div class="row notEdit">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <span style="padding-left: 10px;" data-bind="text: dateJoin"></span>
+                </div>
+            </div>
+        </div>
+        <div class="btn-wrapper">
+            <button class="btn-submit" data-bind="event: {tap: update}">Cập nhật</button>
+        </div>
+    </div>
+</div>

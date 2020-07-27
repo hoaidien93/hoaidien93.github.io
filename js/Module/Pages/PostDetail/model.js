@@ -1,10 +1,12 @@
 const postAPI = require("API/Post");
+const store = require("Store/Store");
 let request = this._request;
 this.countImage = ko.observable("");
 this.isShowImageView = ko.observable(false);
 this.listComment = ko.observableArray([]);
 let fullComment = []
 this.myComment = ko.observable("");
+this.content = ko.observable("");
 
 this.showMore = ko.computed(() => {
     return this.listComment().length < fullComment.length;
@@ -26,16 +28,18 @@ this.postDetail = ko.observable({
     images: [],
     avatar_user_post: "",
     use_post: "",
+    phoneConvert: ""
 });
 
-postAPI.getPostDetail(request.id).then((res) => {
+postAPI.getPostDetail(request.id, request.location).then((res) => {
     let data = res.data;
-    console.log(data);
     data.dateCreate = new Date(data.created_at).toLocaleDateString();
     let length = data.images.length;
     if (length > 5) {
         this.countImage("+" + (length - 5));
     }
+    data.phoneConvert = (data.phone || "").replace(/^0/g, '+84');
+    data.phoneConvert = "tel:" + data.phoneConvert;
     this.pagingImage().max = length;
     this.pagingImage(this.pagingImage());
     this.postDetail(data);
@@ -54,6 +58,15 @@ this.showMoreAction = () => {
     }));
 }
 
+this.favoritePost = () => {
+    store.isShowLoading(true);
+    postAPI.pin(request.id).then((res) => {
+        store.isShowLoading(false);
+    }).catch((e) => {
+        store.isShowLoading(false);
+        console.log(e);
+    })
+}
 
 this.showImage = (index) => {
     this.isShowImageView(true);
@@ -82,7 +95,7 @@ this.changeIndexImage = (data, event) => {
 }
 
 this.addComment = () => {
-    let username = 'hoaidien';
+    let username = localStorage.getItem('name');
     const AVATAR = "https://huongnq.s3-ap-southeast-1.amazonaws.com/avatars/defaut.jpg";
     postAPI.addComment(request.id, this.myComment()).then((res) => {
         if (res.code == 0) {
@@ -98,4 +111,34 @@ this.addComment = () => {
     }).catch((e) => {
         console.log(e);
     })
+}
+
+this.reportPost = () => {
+    showPopupSuccess();
+}
+
+let showPopupSuccess = () => {
+    $("#popup-success").addClass("active");
+    this.content(`
+        <h4>Nội dung báo xấu</h4>
+        <textarea id="reportText"></textarea>
+    `)
+    store.isShowBlank(true);
+}
+
+this.removePopupSuccess = () => {
+    store.isShowLoading(true);
+    let reportText = $('#reportText').val();
+    postAPI.report(request.id, reportText).then((res) => {
+        store.isShowLoading(false);
+        store.isShowBlank(false);
+        app.setPage("Home");
+    }).catch((e) => {
+        console.log(e);
+    })
+}
+
+this.cancel = () => {
+    store.isShowBlank(false);
+    $("#popup-success").removeClass("active");
 }

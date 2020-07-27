@@ -1,13 +1,19 @@
 define(() => {
     const PREVIOUS_PAGE = "#previousPage";
+    const NUMBER_ACCEPT = 10;
     let currentTap;
     let eventFireHove;
     let swipeEvent;
+
     const SWIPE = {
         allowTime: 250,
         threshold: 100
     }
-
+    let isEqual = function (pos1, pos2) {
+        if (Math.abs(pos1.pageX - pos2.pageX) >= NUMBER_ACCEPT) return false;
+        if (Math.abs(pos1.pageY - pos2.pageY) >= NUMBER_ACCEPT) return false;
+        return true;
+    }
     document.addEventListener('tap', function (e) {
         let isDirectTo = false;
         let elementTarget;
@@ -47,7 +53,7 @@ define(() => {
             var event = new CustomEvent('touchhover', {
                 bubbles: true,
                 detail: {
-                    path: currentTap.path, 
+                    path: currentTap.path,
                     target: currentTap.target
                 }
             });
@@ -65,7 +71,7 @@ define(() => {
         }
 
         if (currentTap) {
-            if (currentTap.pageX === e.changedTouches[0].pageX && currentTap.pageY === e.changedTouches[0].pageY) {
+            if (isEqual(currentTap, e.changedTouches[0])) {
                 var event = new CustomEvent('tap', {
                     bubbles: true,
                     detail: currentTap

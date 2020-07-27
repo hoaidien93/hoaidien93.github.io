@@ -3,7 +3,8 @@
 
 <head>
     <meta name="format-detection" content="telephone=no">
-    <meta name="google-signin-client_id" content="649195066861-vmuch8aoo3eaqhl2qrqpje5j08jpfsu2.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="649195066861-vmuch8aoo3eaqhl2qrqpje5j08jpfsu2.apps.googleusercontent.com">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
     <link rel="stylesheet" type="text/css" href="css/index.build.css">
     <link rel="stylesheet" type="text/css" href="css/fontAwesome.css">
@@ -22,8 +23,65 @@
     </div>
     <com-loading></com-loading>
     <com-blank></com-blank>
-    <script type="text/javascript" src="cordova.js"></script>
     <script src="library/jquery-3.1.1.min.js"></script>
+    <script>
+        function onSignIn(googleUser) {
+            let profile = googleUser.getBasicProfile();
+            let token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+            getTokenServer(token).then((res) => {
+                setLocalStorage({
+                    tokenGoogle: token,
+                    name: profile.getName(),
+                    email: profile.getEmail(),
+                    imageURL: profile.getImageUrl(),
+                    appToken: res.data
+                })
+                app.setPage("Home");
+            }).catch((e) => {
+                console.log(e);
+            })
+
+        }
+
+        function gpPlusLogin() {
+            console.log(1);
+            window.plugins.googleplus.login({
+                webClientId: '649195066861-l3kdb6478u61317jvt0vrn9qdaspufjo.apps.googleusercontent.com'
+            }, function (obj) {
+                getTokenServer(obj.idToken).then((res) => {
+                    setLocalStorage({
+                        tokenGoogle: obj.accessToken,
+                        name: obj.displayName,
+                        email: obj.email,
+                        imageURL: obj.imageUrl,
+                        appToken: res.data
+                    });
+                    app.setPage("Home");
+                }).catch((e) => {
+                    console.log(e);
+                })},
+                function (msg) { alert("error: " + msg); }
+            );
+        }
+        function setLocalStorage(data) {
+            Object.keys(data).forEach((key) => {
+                window.localStorage.setItem(key, data[key]);
+            })
+        }
+
+        function getTokenServer(ggToken) {
+            return $.ajax({
+                url: 'http://ec2-54-169-144-80.ap-southeast-1.compute.amazonaws.com:3000/social-login',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "id_token": ggToken,
+                    "type": "google"
+                })
+            })
+        }
+    </script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="library/knockout-3.5.1.js"></script>
     <script src="js/Platform/Core/Config/AppConfig.js"></script>
 </body>

@@ -2,6 +2,7 @@ const addressAPI = require("API/Address");
 const store = require("Store/Store");
 const postAPI = require("API/Post");
 let request = this._request;
+console.log(request);
 this.title = ko.observable(request.title || "");
 this.listDistrict = ko.observableArray([]);
 let isFirstTime = true;
@@ -15,8 +16,13 @@ this.area = ko.observable(request.area || 0);
 this.location = ko.observable(request.location || "");
 this.description = ko.observable(request.description || "");
 this.status = ko.observable("Cập nhật thành công");
-this.isOpenStatus = ko.observable(true);
+this.isOpenStatus = ko.observable(!!request.status);
 
+this.afterBinding = ()=>{
+    if(!request.status){
+        $('input, select, textarea').not('.disabled').not(`input[type="checkbox"]`).prop("disabled", true)
+    }
+}
 this.isOpenStatus.subscribe((newValue) => {
     if(!newValue){
         $('input, select, textarea').attr('disabled',"")
@@ -25,7 +31,6 @@ this.isOpenStatus.subscribe((newValue) => {
     }
     store.isShowLoading(true);
     postAPI.updateStatus(request.id,+newValue).then((res)=>{
-        console.log(res);
         this.status("Cập nhật thành công");
         store.isShowLoading(false);
         showPopupSuccess();

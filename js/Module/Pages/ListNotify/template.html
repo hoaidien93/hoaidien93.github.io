@@ -1,0 +1,22 @@
+<div id="list-notify">
+    <com-slider></com-slider>
+    <com-headercontext></com-headercontext>
+    <div class="body-content">
+        <div class="empty-content" data-bind="visible: isShowEmpty">Hiện không có thông báo nào</div>
+        <div class="search-result" data-bind="foreach: temp">
+            <div class="content-notify"
+                data-bind="event: {tap: $root.directPage}, style: {'background-color': read_at !== 0 ? '#fff': '#d3d1d180'}"
+            >
+                <div class="left">
+                    <img data-bind="attr: {src: imgSrc}">
+                </div>
+                <div class="right">
+                    <div data-bind="text: message">
+                    </div>
+                    <div class="date" data-bind="convertTime: created_at">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

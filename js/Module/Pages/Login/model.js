@@ -1,30 +1,54 @@
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '626943534837480',
-        cookie: true,
-        xfbml: true,
-        version: 'v7.0'
-    });
+const RegisterAPI = require("API/Register");
+const Store = require("Store/Store");
+let enableButton = false;
 
-    FB.AppEvents.logPageView();
-
-};
-
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 this.afterBinding = () => {
+    if (cordova.platformId === "browser") {
+        document.getElementById("signInAndroid").style.display = "none";
+    }
+    if (cordova.platformId === "android") {
+        document.getElementById("signInBrowser").style.display = "none";
+    }
+}
 
+this.phoneNumber = ko.observable("");
+
+this.phoneNumber.subscribe((value) => {
+    if (isValidPhoneNumber(value)) {
+        $('.btn-continue').css({ 'background-color': '#003780', 'color': 'white' });
+        enableButton = true;
+    } else {
+        $('.btn-continue').css({ 'background-color': '#fff', 'color': '#000' });
+        enableButton = false;
+    }
+});
+
+this.getCode = () => {
+    if (enableButton) {
+        Store.isShowLoading(true);
+        let convertedNumber = convertPhoneNumber(this.phoneNumber());
+        console.log(convertedNumber);
+
+        RegisterAPI.getPhoneCode(convertedNumber).then((res) => {
+            Store.isShowLoading(false);
+            if (res.code == 0) {
+                app.setPage("LoginConfirm", { phoneNumber: convertedNumber });
+            }
+            console.log(res);
+        }).catch((e) => {
+            Store.isShowLoading(false);
+            console.log(e);
+        })
+    }
 }
-function statusChangeCallback(res){
-    console.log(res);
+
+let isValidPhoneNumber = (phoneNumber) => {
+    if (phoneNumber.length === 10) {
+        return /^0/.test(phoneNumber);
+    }
+    return false;
 }
-this.loginWithFacebook = () => {
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
+
+let convertPhoneNumber = (phoneNumber) => {
+    return phoneNumber.replace(/^0/g, "+84");
 }
